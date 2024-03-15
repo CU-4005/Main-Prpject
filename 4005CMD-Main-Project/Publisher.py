@@ -52,7 +52,7 @@ class BoatPrototype:
     def departing(self, fuel_tank_volume, frequency_sensor, acceleration_sensor, amplitude_sensor):
         print("Boat is moving...")
 
-        self.mqtt_protocol.client.publish("Frequency", frequency_sensor, qos=2, retain=True)
+        result, mid = self.mqtt_protocol.client.publish("Frequency", frequency_sensor, qos=2, retain=True)
         print(f"Just published {frequency_sensor} to topic Frequency")
         time.sleep(2)
 
@@ -64,9 +64,7 @@ class BoatPrototype:
         print(f"Just published {amplitude_sensor} to topic Amplitude")
         time.sleep(2)
 
-        result, mid = self.mqtt_protocol.client.publish(
-            "Acceleration", acceleration_sensor, qos=2, retain=True
-        )
+        result, mid = self.mqtt_protocol.client.publish("Acceleration", acceleration_sensor, qos=2, retain=True)
         print(f"Just published {acceleration_sensor} to topic Acceleration")
         time.sleep(2)
 
